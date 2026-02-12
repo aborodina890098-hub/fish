@@ -2,18 +2,22 @@
 import React from 'react';
 
 export const CatchBanner: React.FC = () => {
-  const catchList = ["Red Mullet", "Sea Bass", "Tiger Shrimp", "Squid", "Crab", "Blue Lobster", "Seabreem", "Octopus"];
+  const catchList = ["Red Mullet", "Mediterranean Sea Bass", "Tiger Shrimp", "Fresh Squid", "Blue Crab", "Wild Lobster", "Silver Seabreem", "Octopus"];
 
   return (
-    <div className="bg-teal-600 py-4 text-white overflow-hidden whitespace-nowrap border-y border-teal-700/30">
-      <div className="ticker-wrap relative">
-        <div className="ticker flex items-center space-x-12 px-12">
-          {/* Duplicate for seamless effect */}
-          {[...catchList, ...catchList, ...catchList].map((item, i) => (
-            <div key={i} className="flex items-center space-x-4">
-              <span className="text-sm font-bold uppercase tracking-[0.3em] opacity-60">Today's Catch:</span>
-              <span className="text-xl font-serif font-bold italic">{item}</span>
-              <span className="w-2 h-2 rounded-full bg-teal-400 opacity-50"></span>
+    <div className="bg-teal-600 py-6 text-white overflow-hidden whitespace-nowrap border-y border-teal-700/50 relative z-20">
+      <div className="ticker-wrap flex">
+        <div className="ticker flex items-center">
+          {/* Quadruplicate for infinite smooth effect */}
+          {[...Array(4)].map((_, idx) => (
+            <div key={idx} className="flex items-center space-x-16 px-8">
+              {catchList.map((item, i) => (
+                <div key={i} className="flex items-center space-x-4">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-40">Today's Catch</span>
+                  <span className="text-2xl font-serif font-bold italic tracking-tight">{item}</span>
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
+                </div>
+              ))}
             </div>
           ))}
         </div>
