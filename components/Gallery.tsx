@@ -3,7 +3,12 @@ import React from 'react';
 import { GALLERY_IMAGES } from '../constants';
 import { motion } from 'framer-motion';
 
-export const Gallery: React.FC = () => {
+// Added lang prop to interface
+interface GalleryProps {
+  lang: 'en' | 'ar';
+}
+
+export const Gallery: React.FC<GalleryProps> = ({ lang }) => {
   return (
     <section id="gallery" className="py-24 bg-navy relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-offwhite to-transparent opacity-5"></div>
@@ -15,14 +20,18 @@ export const Gallery: React.FC = () => {
             whileInView={{ opacity: 1 }}
             className="text-teal-400 font-bold tracking-[0.4em] uppercase text-xs mb-4"
           >
-            Visual Journey
+            {lang === 'en' ? 'Visual Journey' : 'رحلة بصرية'}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight"
           >
-            Experience the <span className="italic font-normal text-teal-400">Harbor Vibes</span>
+            {lang === 'en' ? (
+              <>Experience the <span className="italic font-normal text-teal-400">Harbor Vibes</span></>
+            ) : (
+              <>عش أجواء <span className="italic font-normal text-teal-400">الميناء</span></>
+            )}
           </motion.p>
         </div>
 
@@ -74,7 +83,7 @@ export const Gallery: React.FC = () => {
 
         <div className="mt-16 flex justify-center">
           <button className="bg-white/5 border border-white/10 text-white px-10 py-5 rounded-full font-bold hover:bg-white hover:text-navy transition-all active:scale-95 shadow-lg">
-            Follow our Instagram @BlueHarborCairo
+            {lang === 'en' ? 'Follow our Instagram @BlueHarborCairo' : 'تابعونا على إنستغرام @BlueHarborCairo'}
           </button>
         </div>
       </div>

@@ -2,26 +2,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const Features: React.FC = () => {
+// Added lang prop to interface to resolve TS errors
+interface FeaturesProps {
+  lang: 'en' | 'ar';
+}
+
+export const Features: React.FC<FeaturesProps> = ({ lang }) => {
   const features = [
     {
-      title: 'Fresh Daily Catch',
-      desc: 'Sourced directly from Egyptian fishermen every morning for the highest quality.',
+      title: lang === 'en' ? 'Fresh Daily Catch' : 'صيد يومي طازج',
+      desc: lang === 'en' ? 'Sourced directly from Egyptian fishermen every morning for the highest quality.' : 'يتم الحصول عليه مباشرة من الصيادين المصريين كل صباح لضمان أعلى جودة.',
       icon: '🌊'
     },
     {
-      title: 'Authentic Recipes',
-      desc: 'Mediterranean flavors passed down through generations, refined by our master chefs.',
+      title: lang === 'en' ? 'Authentic Recipes' : 'وصفات أصلية',
+      desc: lang === 'en' ? 'Mediterranean flavors passed down through generations, refined by our master chefs.' : 'نكهات البحر الأبيض المتوسط المتوارثة عبر الأجيال، والمطورة بواسطة كبار الطهاة لدينا.',
       icon: '👨‍🍳'
     },
     {
-      title: 'Hygienic Standards',
-      desc: 'Our open kitchen follows international safety and hygiene protocols strictly.',
+      title: lang === 'en' ? 'Hygienic Standards' : 'معايير النظافة',
+      desc: lang === 'en' ? 'Our open kitchen follows international safety and hygiene protocols strictly.' : 'مطبخنا المفتوح يتبع بروتوكولات السلامة والنظافة الدولية بصرامة.',
       icon: '🛡️'
     },
     {
-      title: 'Waterfront Terrace',
-      desc: 'Enjoy your meal with the refreshing breeze of the Nile on our premium terrace.',
+      title: lang === 'en' ? 'Waterfront Terrace' : 'تراس على الواجهة البحرية',
+      desc: lang === 'en' ? 'Enjoy your meal with the refreshing breeze of the Nile on our premium terrace.' : 'استمتع بوجبتك مع نسيم النيل المنعش في التراس المميز لدينا.',
       icon: '🌅'
     }
   ];
@@ -48,8 +53,16 @@ export const Features: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-teal-600 font-bold tracking-[0.3em] uppercase text-xs mb-4">The Blue Harbor Promise</h2>
-          <p className="text-4xl md:text-6xl font-serif font-bold text-navy leading-tight">Crafting Excellence <br /> <span className="text-teal-500 italic">Every Single Day</span></p>
+          <h2 className="text-teal-600 font-bold tracking-[0.3em] uppercase text-xs mb-4">
+            {lang === 'en' ? 'The Blue Harbor Promise' : 'وعد بلو هاربور'}
+          </h2>
+          <p className="text-4xl md:text-6xl font-serif font-bold text-navy leading-tight">
+            {lang === 'en' ? (
+              <>Crafting Excellence <br /> <span className="text-teal-500 italic">Every Single Day</span></>
+            ) : (
+              <>نصنع التميز <br /> <span className="text-teal-500 italic">كل يوم</span></>
+            )}
+          </p>
         </motion.div>
 
         <motion.div 
@@ -89,15 +102,21 @@ export const Features: React.FC = () => {
           <div className="w-full md:w-1/2 p-12 md:p-20">
             <div className="w-12 h-1 w-24 bg-teal-500 mb-8"></div>
             <blockquote className="text-3xl font-serif italic mb-10 leading-snug">
-              "Sustainability isn't a trend for us; it's our heritage. We honor the Nile and the Sea in every dish."
+              {lang === 'en' 
+                ? '"Sustainability isn\'t a trend for us; it\'s our heritage. We honor the Nile and the Sea in every dish."'
+                : '"الاستدامة ليست مجرد موضة بالنسبة لنا؛ إنها تراثنا. نحن نكرم النيل والبحر في كل طبق."'}
             </blockquote>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 rtl:space-x-reverse">
               <div className="w-12 h-12 rounded-full border border-teal-500/30 p-1">
                 <div className="w-full h-full rounded-full bg-teal-500/20"></div>
               </div>
               <div>
-                <p className="text-teal-400 font-bold tracking-widest uppercase text-xs">Chef Tarek</p>
-                <p className="text-white/40 text-xs">Executive Culinary Director</p>
+                <p className="text-teal-400 font-bold tracking-widest uppercase text-xs">
+                  {lang === 'en' ? 'Chef Tarek' : 'الشيف طارق'}
+                </p>
+                <p className="text-white/40 text-xs">
+                  {lang === 'en' ? 'Executive Culinary Director' : 'المدير التنفيذي للطهي'}
+                </p>
               </div>
             </div>
           </div>

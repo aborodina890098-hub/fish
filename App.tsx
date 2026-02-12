@@ -16,74 +16,36 @@ import { AiRecommender } from './components/AiRecommender';
 
 const App: React.FC = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [lang, setLang] = useState<'en' | 'ar'>('en');
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Structured Data (JSON-LD)
-  const schemaOrgData = {
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Blue Harbor Seafood",
-    "image": "https://picsum.photos/seed/blueharbor/800/600",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "12 Nile Corniche, Maadi",
-      "addressLocality": "Cairo",
-      "addressCountry": "Egypt"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 29.9593,
-      "longitude": 31.2497
-    },
-    "url": "https://blueharbor-seafood.com",
-    "telephone": "+201000000000",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
-        "opens": "13:00",
-        "closes": "23:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Friday", "Saturday"],
-        "opens": "13:00",
-        "closes": "00:00"
-      }
-    ],
-    "servesCuisine": "Seafood, Mediterranean",
-    "priceRange": "$$$"
-  };
+  }, [lang]);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgData)}
-      </script>
-
-      <Navbar />
+    <div className={`min-h-screen flex flex-col font-sans ${lang === 'ar' ? 'font-arabic' : ''}`}>
+      <Navbar lang={lang} setLang={setLang} />
       
       <main>
-        <Hero />
-        <OffersBanner />
-        <CatchBanner />
-        <Features />
-        <MenuSection />
-        <AiRecommender />
-        <Gallery />
-        <Reviews />
-        <ReservationSection />
-        <LocationSection />
+        <Hero lang={lang} />
+        <OffersBanner lang={lang} />
+        <CatchBanner lang={lang} />
+        <Features lang={lang} />
+        <MenuSection lang={lang} />
+        <AiRecommender lang={lang} />
+        <Gallery lang={lang} />
+        <Reviews lang={lang} />
+        <ReservationSection lang={lang} />
+        <LocationSection lang={lang} />
       </main>
 
-      <Footer />
+      <Footer lang={lang} />
       <FloatingActions showBackToTop={showBackToTop} />
     </div>
   );
