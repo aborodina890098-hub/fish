@@ -1,0 +1,7 @@
+{
+  "name": "Blue Harbor Seafood Landing Page",
+  "description": "A high-converting, premium landing page for Blue Harbor Seafood in Cairo, featuring reservations, menu highlights, and a Gemini-powered AI dish recommender.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
